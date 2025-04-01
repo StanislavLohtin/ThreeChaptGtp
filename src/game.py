@@ -217,6 +217,93 @@ def get_card_by_power(cards, power):
     return None
 
 
+def get_game_state(player_hands, player_scores, round_num, played_cards, current_player_index):
+    """Creates a dictionary representing the current game state."""
+    return {
+        "player_hands": player_hands,
+        "player_scores": player_scores,
+        "round_num": round_num,
+        "played_cards": played_cards,
+        "current_player_index": current_player_index,
+    }
+
+
+def save_game_state(game_states, filename="game_states.json"):
+    """Saves the game states to a JSON file."""
+    with open(filename, "w") as f:
+        json.dump(game_states, f, indent=4)
+
+
+def load_game_states(filename="game_states.json"):
+    """Loads game states from a JSON file."""
+    try:
+        with open(filename, "r") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return []
+
+
+def ai_choose_card(player_hand, game_state):
+    """AI's logic for choosing a card to play."""
+    # Simple AI: Choose the highest power card.
+    best_card = max(player_hand, key=lambda card: card["power"])
+    return best_card
+
+
+def play_round_ai(player_hands, player_scores, round_num, game_states):
+    """Plays a single round of the game with AI players."""
+    num_players = len(player_hands)
+    starting_player = random.randint(0, num_players - 1)
+    played_cards = []
+
+    print(f"\n--- Round {round_num + 1} ---")
+
+    for i in range(num_players):
+        player_index = (starting_player + i) % num_players
+        current_player_hand = player_hands[player_index]
+
+        if player_index == 0:  # Player 1 is the AI
+            card = ai_choose_card(current_player_hand, get_game_state(player_hands, player_scores, round_num, played_cards, player_index))
+        else:  # Other players are random
+            card = random.choice(current_player_hand)
+
+        player_hands[player_index].remove(card)  # Remove the chosen card
+        played_cards.append((player_index, card))
+        print(f"Player {player_index + 1} played: {card['name']} (power: {card['power']})")
+
+    # Determine the winner
+    winner_index = max(played_cards, key=lambda x: x[1]["power"])[0]
+    player_scores[winner_index]["stars"] += 1
+    print(f"Player {winner_index + 1} wins the round!")
+
+    # Calculate points for other players
+    for player_index, card in played_cards:
+        other_cards = [c[1] for c in played_cards if c[0] != player_index]
+        winnings = check_abilities(card, other_cards, True)
+        if winnings is not None:
+            player_scores[player_index]["hearts"] += winnings["hearts"]
+            player_scores[player_index]["crystals"] += winnings["crystals"]
+            player_scores[player_index]["stars"] += winnings["stars"]
+
+    game_states.append(
+        get_game_state(copy.deepcopy(player_hands), copy.deepcopy(player_scores), round_num, played_cards, (starting_player + num_players) % num_players))
+
+
+def play_game_ai(player_hands):
+    """Plays the main game loop with AI players and saves game states."""
+    starting_hands = copy.deepcopy(player_hands)
+    num_rounds = len(player_hands[0])  # 7
+    num_players = len(player_hands)
+    player_scores = [{"stars": 0, "hearts": 0, "crystals": 0} for _ in range(num_players)]
+    game_states = []
+
+    for round_num in range(num_rounds):
+        play_round_ai(player_hands, player_scores, round_num, game_states)
+
+    calculate_final_scores(player_scores, starting_hands)
+    save_game_state(game_states)
+
+
 # Main game setup
 deck = create_card_deck()
 if deck:
@@ -224,4 +311,5 @@ if deck:
     display_player_hands(players_hands, "dealt")
     drafted_hands = draft_cards(players_hands)
     display_player_hands(drafted_hands, "drafted")
-    play_game(drafted_hands)
+    play_game_ai(drafted_hands)
+    # play_game(drafted_hands)

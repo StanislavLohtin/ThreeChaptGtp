@@ -4,7 +4,7 @@
     "types": [
       "Monster",
       "Tier",
-      "Bösewicht",
+      "Boesewicht",
       "Kind",
       "Wunderland",
       "Zauber",
@@ -21,7 +21,7 @@
       "Tier",
       "Krone"
     ],
-    "name": "Froschkönig",
+    "name": "Froschkoenig",
     "abilities": [
       {
         "condition": "exists_one_other",
@@ -37,61 +37,127 @@
   {
     "power": 3,
     "types": [
-      "Monster",
-      "Tier"
+      "Zauber",
+      "Kind"
     ],
-    "name": "Grosser Böser Wolf3",
-    "abilities": [],
+    "name": "Pinocchio",
+    "abilities": [
+      {
+        "condition": "with",
+        "condition_type": 26,
+        "trigger": "both",
+        "hearts": 3,
+        "stars": 0,
+        "crystals": 0
+      }
+    ],
     "img_url": null
   },
   {
     "power": 4,
     "types": [
-      "Monster",
-      "Tier"
+      "Kind"
     ],
-    "name": "Grosser Böser Wolf4",
-    "abilities": [],
+    "name": "Jack",
+    "abilities": [
+      {
+        "condition": "with",
+        "condition_type": 47,
+        "trigger": "both",
+        "hearts": 0,
+        "stars": 0,
+        "crystals": 5
+      }
+    ],
     "img_url": null
   },
   {
     "power": 5,
     "types": [
-      "Monster",
-      "Krone"
+      "Kind"
     ],
-    "name": "Grosser Böser Wolf5",
-    "abilities": [],
+    "name": "Goldgloeckchen",
+    "abilities": [
+      {
+        "condition": "with",
+        "condition_type": 35,
+        "trigger": "both",
+        "hearts": 0,
+        "stars": 0,
+        "crystals": 4
+      }
+    ],
     "img_url": null
   },
   {
     "power": 6,
     "types": [
-      "Monster",
-      "Krone"
+      "Kind"
     ],
-    "name": "Grosser Böser Wolf6",
-    "abilities": [],
+    "name": "Haensel",
+    "abilities": [
+      {
+        "condition": "with",
+        "condition_type": 7,
+        "trigger": "both",
+        "hearts": 1,
+        "stars": 0,
+        "crystals": 0
+      },
+      {
+        "condition": "with",
+        "condition_type": 44,
+        "trigger": "both",
+        "hearts": 0,
+        "stars": 0,
+        "crystals": 1
+      }
+    ],
     "img_url": null
   },
   {
     "power": 7,
     "types": [
-      "Monster",
-      "Krone"
+      "Kind"
     ],
-    "name": "Grosser Böser Wolf7",
-    "abilities": [],
+    "name": "Gretel",
+    "abilities": [
+      {
+        "condition": "with",
+        "condition_type": 6,
+        "trigger": "both",
+        "hearts": 1,
+        "stars": 0,
+        "crystals": 0
+      },
+      {
+        "condition": "with",
+        "condition_type": 44,
+        "trigger": "both",
+        "hearts": 0,
+        "stars": 0,
+        "crystals": 1
+      }
+    ],
     "img_url": null
   },
   {
     "power": 8,
     "types": [
-      "Monster",
-      "Krone"
+      "Kind",
+      "Wunderland"
     ],
-    "name": "Grosser Böser Wolf8",
-    "abilities": [],
+    "name": "Alice",
+    "abilities": [
+      {
+        "condition": "for_each_other",
+        "condition_type": "Wunderland",
+        "trigger": "both",
+        "hearts": 1,
+        "stars": 0,
+        "crystals": 0
+      }
+    ],
     "img_url": null
   },
   {
@@ -100,38 +166,64 @@
       "Monster",
       "Tier"
     ],
-    "name": "Grosser Böser Wolf9",
+    "name": "Grosser Boeser Wolf9",
     "abilities": [],
     "img_url": null
   },
   {
     "power": 10,
     "types": [
-      "Monster",
-      "Tier"
+      "Zwerg",
+      "Wunderland"
     ],
-    "name": "Grosser Böser Wolf10",
-    "abilities": [],
+    "name": "Tweedledum",
+    "abilities": [
+      {
+        "condition": "with",
+        "condition_type": 11,
+        "trigger": "both",
+        "hearts": 1,
+        "stars": 0,
+        "crystals": 0
+      }
+    ],
     "img_url": null
   },
   {
     "power": 11,
     "types": [
-      "Monster",
-      "Tier"
+      "Zwerg",
+      "Wunderland"
     ],
-    "name": "Grosser Böser Wolf11",
-    "abilities": [],
+    "name": "Tweedledee",
+    "abilities": [
+      {
+        "condition": "with",
+        "condition_type": 10,
+        "trigger": "both",
+        "hearts": 1,
+        "stars": 0,
+        "crystals": 0
+      }
+    ],
     "img_url": null
   },
   {
     "power": 12,
     "types": [
-      "Monster",
-      "Tier"
+      "Kind"
     ],
-    "name": "Grosser Böser Wolf12",
-    "abilities": [],
+    "name": "Rotkaeppchen",
+    "abilities": [
+      {
+        "condition": "with",
+        "condition_type": 48,
+        "trigger": "both",
+        "hearts": 0,
+        "stars": 0,
+        "crystals": 4
+      }
+    ],
     "img_url": null
   },
   {
@@ -140,7 +232,7 @@
       "Monster",
       "Tier"
     ],
-    "name": "Grosser Böser Wolf13",
+    "name": "Grosser Boeser Wolf13",
     "abilities": [],
     "img_url": null
   },
@@ -150,18 +242,26 @@
       "Monster",
       "Tier"
     ],
-    "name": "Grosser Böser Wolf14",
+    "name": "Grosser Boeser Wolf14",
     "abilities": [],
     "img_url": null
   },
   {
     "power": 15,
     "types": [
-      "Monster",
-      "Tier"
+      "Zwerg"
     ],
-    "name": "Grosser Böser Wolf15",
-    "abilities": [],
+    "name": "Verliebter Zwerg",
+    "abilities": [
+      {
+        "condition": "with",
+        "condition_type": 19,
+        "trigger": "both",
+        "hearts": 0,
+        "stars": 0,
+        "crystals": 4
+      }
+    ],
     "img_url": null
   },
   {
@@ -170,7 +270,7 @@
       "Monster",
       "Tier"
     ],
-    "name": "Grosser Böser Wolf16",
+    "name": "Grosser Boeser Wolf16",
     "abilities": [],
     "img_url": null
   },
@@ -180,78 +280,143 @@
       "Monster",
       "Tier"
     ],
-    "name": "Grosser Böser Wolf17",
+    "name": "Grosser Boeser Wolf17",
     "abilities": [],
     "img_url": null
   },
   {
     "power": 18,
     "types": [
-      "Monster",
-      "Tier"
+      "Zwerg"
     ],
-    "name": "Grosser Böser Wolf18",
-    "abilities": [],
+    "name": "Zwergen Oberhaupt",
+    "abilities": [
+      {
+        "condition": "for_each",
+        "condition_type": "Zwerg",
+        "trigger": "both",
+        "hearts": 0,
+        "stars": 0,
+        "crystals": 1
+      }
+    ],
     "img_url": null
   },
   {
     "power": 19,
     "types": [
-      "Monster",
-      "Tier"
+      "Krone"
     ],
-    "name": "Grosser Böser Wolf19",
-    "abilities": [],
+    "name": "Schneewittchen",
+    "abilities": [
+      {
+        "condition": "for_each",
+        "condition_type": "Zwerg",
+        "trigger": "both",
+        "hearts": 1,
+        "stars": 0,
+        "crystals": 0
+      }
+    ],
     "img_url": null
   },
   {
     "power": 20,
     "types": [
-      "Monster",
-      "Tier"
+      "Krone"
     ],
-    "name": "Grosser Böser Wolf20",
-    "abilities": [],
+    "name": "Die Schoene",
+    "abilities": [
+      {
+        "condition": "with",
+        "condition_type": 45,
+        "trigger": "both",
+        "hearts": 1,
+        "stars": 0,
+        "crystals": 0
+      }
+    ],
     "img_url": null
   },
   {
     "power": 21,
     "types": [
-      "Monster",
-      "Tier"
+      "Boesewicht",
+      "Monster"
     ],
-    "name": "Grosser Böser Wolf21",
-    "abilities": [],
+    "name": "Baba Jaga",
+    "abilities": [
+      {
+        "condition": "for_each_other",
+        "condition_type": "Boesewicht",
+        "trigger": "both",
+        "hearts": 1,
+        "stars": 0,
+        "crystals": 0
+      }
+    ],
     "img_url": null
   },
   {
     "power": 22,
     "types": [
-      "Monster",
-      "Tier"
+      "Zauber"
     ],
-    "name": "Grosser Böser Wolf22",
-    "abilities": [],
+    "name": "Gute Fee",
+    "abilities": [
+      {
+        "condition": "for_each",
+        "condition_type": "Krone",
+        "trigger": "both",
+        "hearts": 1,
+        "stars": 0,
+        "crystals": 0
+      }
+    ],
     "img_url": null
   },
   {
     "power": 23,
     "types": [
-      "Monster",
-      "Tier"
+      "Zauber"
     ],
-    "name": "Grosser Böser Wolf23",
-    "abilities": [],
+    "name": "Gloeckchen",
+    "abilities": [
+      {
+        "condition": "for_each_other",
+        "condition_type": "Zauber",
+        "trigger": "both",
+        "hearts": 1,
+        "stars": 0,
+        "crystals": 0
+      }
+    ],
     "img_url": null
   },
   {
     "power": 24,
     "types": [
-      "Monster",
-      "Tier"
+      "Krone"
     ],
-    "name": "Grosser Böser Wolf24",
-    "abilities": [],
+    "name": "Aschenputtel",
+    "abilities": [
+      {
+        "condition": "for_each",
+        "condition_type": "Tier",
+        "trigger": "both",
+        "hearts": 1,
+        "stars": 0,
+        "crystals": 0
+      },
+      {
+        "condition": "with",
+        "condition_type": 22,
+        "trigger": "both",
+        "hearts": 0,
+        "stars": 0,
+        "crystals": 2
+      }
+    ],
     "img_url": null
   },
   {
@@ -260,7 +425,7 @@
       "Monster",
       "Tier"
     ],
-    "name": "Grosser Böser Wolf25",
+    "name": "Grosser Boeser Wolf25",
     "abilities": [],
     "img_url": null
   },
@@ -270,7 +435,7 @@
       "Monster",
       "Tier"
     ],
-    "name": "Grosser Böser Wolf26",
+    "name": "Grosser Boeser Wolf26",
     "abilities": [],
     "img_url": null
   },
@@ -280,57 +445,314 @@
       "Monster",
       "Tier"
     ],
-    "name": "Grosser Böser Wolf27",
+    "name": "Grosser Boeser Wolf27",
     "abilities": [],
     "img_url": null
   },
   {
     "power": 28,
     "types": [
-      "Monster",
-      "Tier"
+      "Wunderland"
     ],
-    "name": "Grosser Böser Wolf28",
-    "abilities": [],
+    "name": "Hutmacher",
+    "abilities": [
+      {
+        "condition": "for_each",
+        "condition_type": "Wunderland",
+        "trigger": "both",
+        "hearts": 0,
+        "stars": 0,
+        "crystals": 1
+      }
+    ],
     "img_url": null
   },
   {
     "power": 29,
     "types": [
-      "Monster",
-      "Tier"
+      "Krone"
     ],
-    "name": "Grosser Böser Wolf29",
-    "abilities": [],
+    "name": "Prinzessin",
+    "abilities": [
+      {
+        "condition": "with",
+        "condition_type": 50,
+        "trigger": "both",
+        "hearts": 1,
+        "stars": 1,
+        "crystals": 1
+      }
+    ],
     "img_url": null
   },
   {
     "power": 30,
     "types": [
-      "Monster",
-      "Tier"
+      "Kind"
     ],
-    "name": "Grosser Böser Wolf30",
-    "abilities": [],
+    "name": "Peter Pan",
+    "abilities": [
+      {
+        "condition": "for_each_other",
+        "condition_type": "Kind",
+        "trigger": "both",
+        "hearts": 1,
+        "stars": 0,
+        "crystals": 0
+      }
+    ],
     "img_url": null
   },
   {
     "power": 31,
     "types": [
-      "Monster",
       "Tier"
     ],
-    "name": "Grosser Böser Wolf31",
-    "abilities": [],
+    "name": "Gestiefelter Kater",
+    "abilities": [
+      {
+        "condition": "for_each",
+        "condition_type": "Monster",
+        "trigger": "both",
+        "hearts": 1,
+        "stars": 0,
+        "crystals": 0
+      }
+    ],
     "img_url": null
   },
   {
     "power": 32,
     "types": [
+      "Monster"
+    ],
+    "name": "Oger",
+    "abilities": [
+      {
+        "condition": "for_each",
+        "condition_type": "Tier",
+        "trigger": "both",
+        "hearts": 0,
+        "stars": 0,
+        "crystals": 1
+      }
+    ],
+    "img_url": null
+  },
+  {
+    "power": 33,
+    "types": [
+      "Boesewicht",
+      "Zauber"
+    ],
+    "name": "Rumpelstilzchen",
+    "abilities": [
+      {
+        "condition": "for_each",
+        "condition_type": "Krone",
+        "trigger": "both",
+        "hearts": 0,
+        "stars": 0,
+        "crystals": 1
+      }
+    ],
+    "img_url": null
+  },
+  {
+    "power": 34,
+    "types": [
+      "Boesewicht",
+      "Zauber"
+    ],
+    "name": "Boese Fee",
+    "abilities": [
+      {
+        "condition": "for_each",
+        "condition_type": "Boesewicht",
+        "trigger": "both",
+        "hearts": 0,
+        "stars": 0,
+        "crystals": 1
+      }
+    ],
+    "img_url": null
+  },
+  {
+    "power": 35,
+    "types": [
       "Monster",
       "Tier"
     ],
-    "name": "Grosser Böser Wolf32",
+    "name": "Grosser Boeser Wolf35",
+    "abilities": [],
+    "img_url": null
+  },
+  {
+    "power": 36,
+    "types": [
+      "Monster",
+      "Tier"
+    ],
+    "name": "Grosser Boeser Wolf36",
+    "abilities": [],
+    "img_url": null
+  },
+  {
+    "power": 37,
+    "types": [
+      "Monster",
+      "Tier"
+    ],
+    "name": "Grosser Boeser Wolf37",
+    "abilities": [],
+    "img_url": null
+  },
+  {
+    "power": 38,
+    "types": [
+      "Boesewicht"
+    ],
+    "name": "Captain Hook",
+    "abilities": [
+      {
+        "condition": "with",
+        "condition_type": 30,
+        "trigger": "both",
+        "hearts": 0,
+        "stars": 0,
+        "crystals": 2
+      }
+    ],
+    "img_url": null
+  },
+  {
+    "power": 39,
+    "types": [
+      "Zauber"
+    ],
+    "name": "Zauberer",
+    "abilities": [
+      {
+        "condition": "for_each",
+        "condition_type": "Zauber",
+        "trigger": "both",
+        "hearts": 0,
+        "stars": 0,
+        "crystals": 1
+      }
+    ],
+    "img_url": null
+  },
+  {
+    "power": 40,
+    "types": [
+      "Monster",
+      "Tier"
+    ],
+    "name": "Grosser Boeser Wolf40",
+    "abilities": [],
+    "img_url": null
+  },
+  {
+    "power": 41,
+    "types": [
+      "Tier"
+    ],
+    "name": "Einhorn",
+    "abilities": [
+      {
+        "condition": "exists_one_other",
+        "condition_type": "Krone",
+        "trigger": "both",
+        "hearts": 1,
+        "stars": 0,
+        "crystals": 0
+      }
+    ],
+    "img_url": null
+  },
+  {
+    "power": 42,
+    "types": [
+      "Krone"
+    ],
+    "name": "Prinz",
+    "abilities": [
+      {
+        "condition": "for_each",
+        "condition_type": "Monster",
+        "trigger": "both",
+        "hearts": 0,
+        "stars": 0,
+        "crystals": 1
+      }
+    ],
+    "img_url": null
+  },
+  {
+    "power": 43,
+    "types": [
+      "Monster",
+      "Tier"
+    ],
+    "name": "Grosser Boeser Wolf43",
+    "abilities": [],
+    "img_url": null
+  },
+  {
+    "power": 44,
+    "types": [
+      "Boesewicht",
+      "Zauber"
+    ],
+    "name": "Hexe",
+    "abilities": [
+      {
+        "condition": "for_each",
+        "condition_type": "Kind",
+        "trigger": "both",
+        "hearts": 0,
+        "stars": 0,
+        "crystals": 1
+      }
+    ],
+    "img_url": null
+  },
+  {
+    "power": 45,
+    "types": [
+      "Monster",
+      "Krone"
+    ],
+    "name": "Das Biest",
+    "abilities": [
+      {
+        "condition": "with",
+        "condition_type": 20,
+        "trigger": "both",
+        "hearts": 1,
+        "stars": 0,
+        "crystals": 0
+      }
+    ],
+    "img_url": null
+  },
+  {
+    "power": 46,
+    "types": [
+      "Monster",
+      "Tier"
+    ],
+    "name": "Seeschlange",
+    "abilities": [],
+    "img_url": null
+  },
+  {
+    "power": 47,
+    "types": [
+      "Monster"
+    ],
+    "name": "Riese",
     "abilities": [],
     "img_url": null
   },
@@ -340,16 +762,16 @@
       "Monster",
       "Tier"
     ],
-    "name": "Grosser Böser Wolf",
+    "name": "Grosser Boeser Wolf",
     "abilities": [],
     "img_url": null
   },
   {
     "power": 49,
     "types": [
-      "Bösewicht"
+      "Boesewicht"
     ],
-    "name": "Böse Stiefmutter",
+    "name": "Boese Stiefmutter",
     "abilities": [],
     "img_url": null
   },

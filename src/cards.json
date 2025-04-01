@@ -1,0 +1,364 @@
+[
+  {
+    "power": 1,
+    "types": [
+      "Monster",
+      "Tier",
+      "Bösewicht",
+      "Kind",
+      "Wunderland",
+      "Zauber",
+      "Zwerg",
+      "Krone"
+    ],
+    "name": "Gestaltwandler",
+    "abilities": [],
+    "img_url": null
+  },
+  {
+    "power": 2,
+    "types": [
+      "Tier",
+      "Krone"
+    ],
+    "name": "Froschkönig",
+    "abilities": [
+      {
+        "condition": "exists_one_other",
+        "condition_type": "Krone",
+        "trigger": "both",
+        "currency": "heart",
+        "value": 2
+      }
+    ],
+    "img_url": null
+  },
+  {
+    "power": 3,
+    "types": [
+      "Monster",
+      "Tier"
+    ],
+    "name": "Grosser Böser Wolf3",
+    "abilities": [],
+    "img_url": null
+  },
+  {
+    "power": 4,
+    "types": [
+      "Monster",
+      "Tier"
+    ],
+    "name": "Grosser Böser Wolf4",
+    "abilities": [],
+    "img_url": null
+  },
+  {
+    "power": 5,
+    "types": [
+      "Monster",
+      "Tier"
+    ],
+    "name": "Grosser Böser Wolf5",
+    "abilities": [],
+    "img_url": null
+  },
+  {
+    "power": 6,
+    "types": [
+      "Monster",
+      "Tier"
+    ],
+    "name": "Grosser Böser Wolf6",
+    "abilities": [],
+    "img_url": null
+  },
+  {
+    "power": 7,
+    "types": [
+      "Monster",
+      "Tier"
+    ],
+    "name": "Grosser Böser Wolf7",
+    "abilities": [],
+    "img_url": null
+  },
+  {
+    "power": 8,
+    "types": [
+      "Monster",
+      "Tier"
+    ],
+    "name": "Grosser Böser Wolf8",
+    "abilities": [],
+    "img_url": null
+  },
+  {
+    "power": 9,
+    "types": [
+      "Monster",
+      "Tier"
+    ],
+    "name": "Grosser Böser Wolf9",
+    "abilities": [],
+    "img_url": null
+  },
+  {
+    "power": 10,
+    "types": [
+      "Monster",
+      "Tier"
+    ],
+    "name": "Grosser Böser Wolf10",
+    "abilities": [],
+    "img_url": null
+  },
+  {
+    "power": 11,
+    "types": [
+      "Monster",
+      "Tier"
+    ],
+    "name": "Grosser Böser Wolf11",
+    "abilities": [],
+    "img_url": null
+  },
+  {
+    "power": 12,
+    "types": [
+      "Monster",
+      "Tier"
+    ],
+    "name": "Grosser Böser Wolf12",
+    "abilities": [],
+    "img_url": null
+  },
+  {
+    "power": 13,
+    "types": [
+      "Monster",
+      "Tier"
+    ],
+    "name": "Grosser Böser Wolf13",
+    "abilities": [],
+    "img_url": null
+  },
+  {
+    "power": 14,
+    "types": [
+      "Monster",
+      "Tier"
+    ],
+    "name": "Grosser Böser Wolf14",
+    "abilities": [],
+    "img_url": null
+  },
+  {
+    "power": 15,
+    "types": [
+      "Monster",
+      "Tier"
+    ],
+    "name": "Grosser Böser Wolf15",
+    "abilities": [],
+    "img_url": null
+  },
+  {
+    "power": 16,
+    "types": [
+      "Monster",
+      "Tier"
+    ],
+    "name": "Grosser Böser Wolf16",
+    "abilities": [],
+    "img_url": null
+  },
+  {
+    "power": 17,
+    "types": [
+      "Monster",
+      "Tier"
+    ],
+    "name": "Grosser Böser Wolf17",
+    "abilities": [],
+    "img_url": null
+  },
+  {
+    "power": 18,
+    "types": [
+      "Monster",
+      "Tier"
+    ],
+    "name": "Grosser Böser Wolf18",
+    "abilities": [],
+    "img_url": null
+  },
+  {
+    "power": 19,
+    "types": [
+      "Monster",
+      "Tier"
+    ],
+    "name": "Grosser Böser Wolf19",
+    "abilities": [],
+    "img_url": null
+  },
+  {
+    "power": 20,
+    "types": [
+      "Monster",
+      "Tier"
+    ],
+    "name": "Grosser Böser Wolf20",
+    "abilities": [],
+    "img_url": null
+  },
+  {
+    "power": 21,
+    "types": [
+      "Monster",
+      "Tier"
+    ],
+    "name": "Grosser Böser Wolf21",
+    "abilities": [],
+    "img_url": null
+  },
+  {
+    "power": 22,
+    "types": [
+      "Monster",
+      "Tier"
+    ],
+    "name": "Grosser Böser Wolf22",
+    "abilities": [],
+    "img_url": null
+  },
+  {
+    "power": 23,
+    "types": [
+      "Monster",
+      "Tier"
+    ],
+    "name": "Grosser Böser Wolf23",
+    "abilities": [],
+    "img_url": null
+  },
+  {
+    "power": 24,
+    "types": [
+      "Monster",
+      "Tier"
+    ],
+    "name": "Grosser Böser Wolf24",
+    "abilities": [],
+    "img_url": null
+  },
+  {
+    "power": 25,
+    "types": [
+      "Monster",
+      "Tier"
+    ],
+    "name": "Grosser Böser Wolf25",
+    "abilities": [],
+    "img_url": null
+  },
+  {
+    "power": 26,
+    "types": [
+      "Monster",
+      "Tier"
+    ],
+    "name": "Grosser Böser Wolf26",
+    "abilities": [],
+    "img_url": null
+  },
+  {
+    "power": 27,
+    "types": [
+      "Monster",
+      "Tier"
+    ],
+    "name": "Grosser Böser Wolf27",
+    "abilities": [],
+    "img_url": null
+  },
+  {
+    "power": 28,
+    "types": [
+      "Monster",
+      "Tier"
+    ],
+    "name": "Grosser Böser Wolf28",
+    "abilities": [],
+    "img_url": null
+  },
+  {
+    "power": 29,
+    "types": [
+      "Monster",
+      "Tier"
+    ],
+    "name": "Grosser Böser Wolf29",
+    "abilities": [],
+    "img_url": null
+  },
+  {
+    "power": 30,
+    "types": [
+      "Monster",
+      "Tier"
+    ],
+    "name": "Grosser Böser Wolf30",
+    "abilities": [],
+    "img_url": null
+  },
+  {
+    "power": 31,
+    "types": [
+      "Monster",
+      "Tier"
+    ],
+    "name": "Grosser Böser Wolf31",
+    "abilities": [],
+    "img_url": null
+  },
+  {
+    "power": 32,
+    "types": [
+      "Monster",
+      "Tier"
+    ],
+    "name": "Grosser Böser Wolf32",
+    "abilities": [],
+    "img_url": null
+  },
+  {
+    "power": 48,
+    "types": [
+      "Monster",
+      "Tier"
+    ],
+    "name": "Grosser Böser Wolf",
+    "abilities": [],
+    "img_url": null
+  },
+  {
+    "power": 49,
+    "types": [
+      "Bösewicht"
+    ],
+    "name": "Böse Stiefmutter",
+    "abilities": [],
+    "img_url": null
+  },
+  {
+    "power": 50,
+    "types": [
+      "Monster"
+    ],
+    "name": "Drache",
+    "abilities": [],
+    "img_url": null
+  }
+]

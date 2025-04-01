@@ -27,8 +27,9 @@
         "condition": "exists_one_other",
         "condition_type": "Krone",
         "trigger": "both",
-        "currency": "heart",
-        "value": 2
+        "hearts": 2,
+        "stars": 0,
+        "crystals": 0
       }
     ],
     "img_url": null
@@ -57,7 +58,7 @@
     "power": 5,
     "types": [
       "Monster",
-      "Tier"
+      "Krone"
     ],
     "name": "Grosser Böser Wolf5",
     "abilities": [],
@@ -67,7 +68,7 @@
     "power": 6,
     "types": [
       "Monster",
-      "Tier"
+      "Krone"
     ],
     "name": "Grosser Böser Wolf6",
     "abilities": [],
@@ -77,7 +78,7 @@
     "power": 7,
     "types": [
       "Monster",
-      "Tier"
+      "Krone"
     ],
     "name": "Grosser Böser Wolf7",
     "abilities": [],
@@ -87,7 +88,7 @@
     "power": 8,
     "types": [
       "Monster",
-      "Tier"
+      "Krone"
     ],
     "name": "Grosser Böser Wolf8",
     "abilities": [],

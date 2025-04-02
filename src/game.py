@@ -1,6 +1,8 @@
 import copy
 import json
 import random
+import time
+from collections import defaultdict
 
 import numpy as np
 from sklearn.neural_network import MLPRegressor
@@ -92,6 +94,12 @@ def check_ability(ability, player_card, other_cards, is_second_phase):
         card_found = 1 if get_card_by_power(other_cards, ability["condition_type"]) is not None else 0
         return {"stars": ability["stars"] * card_found, "hearts": ability["hearts"] * card_found, "crystals": ability["crystals"] * card_found}
 
+    if ability["condition"] == "for_each_in_range":
+        # Check if a specific card (by power) exists
+        ranges_string = ability["condition_type"].split(',')
+        cards_found = len(get_cards_in_power_range(other_cards, int(ranges_string[0]), int(ranges_string[1])))
+        return {"stars": ability["stars"] * cards_found, "hearts": ability["hearts"] * cards_found, "crystals": ability["crystals"] * cards_found}
+
     return {"stars": 0, "hearts": 0, "crystals": 0}
 
 
@@ -166,6 +174,11 @@ def get_card_abilities(card, is_second_phase):
 def get_cards_by_type(cards, type_name):
     """Find all cards of a specific type."""
     return [card for card in cards if type_name in card["types"]]
+
+
+def get_cards_in_power_range(cards, min_power, max_power):
+    """Find a card with a specific power value."""
+    return [card for card in cards if (card["power"] >= min_power) and card["power"] <= max_power]
 
 
 def get_card_by_power(cards, power):
@@ -277,9 +290,32 @@ def ai_choose_card(player_hand, game_state, model, player_index, is_drafting):
 
 def train_and_play_game(episodes=1000, cards_data=None):
     """Trains and plays the game using a single model for both drafting and playing."""
+    # Load previous training data, if available
+    previous_model_data = load_training_data()
+
     # Initialize the model
-    model = MLPRegressor(hidden_layer_sizes=(256, 128, 64), activation="relu",
-                         random_state=1, max_iter=2000, warm_start=True)
+    if previous_model_data:
+        print("Loading model from previous training data...")
+        model = MLPRegressor(hidden_layer_sizes=previous_model_data['hidden_layer_sizes'], activation="relu",
+                             random_state=1, max_iter=2000, warm_start=True)
+        model.coefs_ = previous_model_data['coefs_']
+        model.intercepts_ = previous_model_data['intercepts_']
+        if 'n_layers_' in previous_model_data:
+            model.n_layers_ = previous_model_data['n_layers_']
+        if 'out_activation_' in previous_model_data:
+            model.out_activation_ = previous_model_data['out_activation_']
+        if 't_' in previous_model_data:
+            model.t_ = previous_model_data['t_']
+        if 'loss_curve_' in previous_model_data:
+            model.loss_curve_ = previous_model_data['loss_curve_']
+        if 'best_loss_' in previous_model_data:
+            model.best_loss_ = previous_model_data['best_loss_']
+        if '_no_improvement_count' in previous_model_data:
+            model._no_improvement_count = previous_model_data['_no_improvement_count']
+    else:
+        print("No previous training data found. Training from scratch.")
+        model = MLPRegressor(hidden_layer_sizes=(256, 128, 64), activation="relu",
+                             random_state=1, max_iter=2000, warm_start=True)
 
     # Player AI will control
     player_index = 0
@@ -288,22 +324,28 @@ def train_and_play_game(episodes=1000, cards_data=None):
     deck = cards_data
 
     # Initialize model with dummy data
-    X_init = np.zeros((1, 170))  # Adjust size based on get_unified_state_features
+    X_init = np.zeros((1, 170))
     y_init = np.zeros(1)
-    model.fit(X_init, y_init)
+    if not previous_model_data:
+        model.fit(X_init, y_init)  # Only fit on dummy if no previous model data
 
     ai_wins = 0
+    player_points = []
+    card_draft_counts = defaultdict(int)
+    card_win_counts = defaultdict(int)
+    all_cards = set()
+
     for episode in range(episodes):
         if episode % 10 == 0:
             print(f"Starting episode {episode + 1}/{episodes}")
 
         # Deal cards
         players_hands, _ = deal_cards(deck)
-        display_player_hands(players_hands, 'dealt')
+        # display_player_hands(players_hands, 'dealt')
         player_scores = [{"stars": 0, "hearts": 0, "crystals": 0} for _ in range(4)]
-        drafted_hands = [[] for _ in range(4)]  # Keep track of drafted hands
+        drafted_hands = [[] for _ in range(4)]
 
-        episode_memory = []  # Store (state, action, reward) tuples for training
+        episode_memory = []
 
         # --- Drafting Phase ---
         remaining_hands = copy.deepcopy(players_hands)
@@ -312,12 +354,11 @@ def train_and_play_game(episodes=1000, cards_data=None):
                 current_hand = remaining_hands[player_draft_index]
                 if not current_hand:
                     continue
-                # Create game state for drafting
                 drafting_state = get_game_state(
                     copy.deepcopy(remaining_hands),
                     copy.deepcopy(player_scores),
-                    0,  # round num
-                    [],  # played cards
+                    0,
+                    [],
                     player_draft_index,
                     draft_round,
                     copy.deepcopy(drafted_hands)
@@ -325,39 +366,40 @@ def train_and_play_game(episodes=1000, cards_data=None):
 
                 if player_draft_index == player_index:
                     card = ai_choose_card(current_hand, drafting_state, model, player_draft_index, True)
+                    card_draft_counts[card["name"]] += 1
+                    all_cards.add(card["name"])
                 else:
                     card = random.choice(current_hand)
 
                 if not card:
                     continue
-                # Store state and action for training
                 if player_draft_index == player_index:
                     features = get_unified_state_features(drafting_state, player_index)
-                    episode_memory.append((features, card, None))  # None reward for now
+                    episode_memory.append((features, card, None))
 
                 drafted_hands[player_draft_index].append(card)
                 current_hand.remove(card)
                 remaining_hands[player_draft_index] = current_hand
 
-            # Rotate hands
             rotated_hands = [remaining_hands[(player_draft_index - 1) % 4] for player_draft_index in range(4)]
             remaining_hands = rotated_hands
 
-        display_player_hands(drafted_hands, 'drafted')
+        # display_player_hands(drafted_hands, 'drafted')
+        hands_after_draft = copy.deepcopy(drafted_hands)
+
         # --- Playing Phase ---
         for round_num in range(7):
             num_players = 4
             starting_player = random.randint(0, num_players - 1)
             played_cards = []
 
-            # Create game state
             game_state = get_game_state(
                 copy.deepcopy(drafted_hands),
                 copy.deepcopy(player_scores),
                 round_num,
                 played_cards,
                 starting_player,
-                7,  # draft round
+                7,
                 copy.deepcopy(drafted_hands)
             )
             for i in range(num_players):
@@ -379,7 +421,7 @@ def train_and_play_game(episodes=1000, cards_data=None):
                 # Store state and action
                 if current_player_index == player_index:
                     features = get_unified_state_features(game_state, player_index)
-                    episode_memory.append((features, card, None))  # None reward for now
+                    episode_memory.append((features, card, None))
 
                 drafted_hands[current_player_index].remove(card)
                 played_cards.append((current_player_index, card))
@@ -399,7 +441,8 @@ def train_and_play_game(episodes=1000, cards_data=None):
                         player_scores[current_player_index]["stars"] += winnings["stars"]
 
         # Calculate final scores
-        final_scores = calculate_final_scores(player_scores, drafted_hands)
+        final_scores = calculate_final_scores(player_scores, hands_after_draft)
+        player_points.append(final_scores[player_index][1])
 
         # Determine winner and assign rewards
         ai_won = False
@@ -414,10 +457,12 @@ def train_and_play_game(episodes=1000, cards_data=None):
         if ai_won:
             ai_wins += 1
             for i in range(len(episode_memory)):
-                episode_memory[i] = (episode_memory[i][0], episode_memory[i][1], 1)  # Win reward
+                episode_memory[i] = (episode_memory[i][0], episode_memory[i][1], 1)
+                if episode_memory[i][1] is not None:
+                    card_win_counts[episode_memory[i][1]["name"]] += 1
         else:
             for i in range(len(episode_memory)):
-                episode_memory[i] = (episode_memory[i][0], episode_memory[i][1], 0)  # Loss reward
+                episode_memory[i] = (episode_memory[i][0], episode_memory[i][1], 0)
 
         # Train the model
         train_x = np.array([state for state, _, _ in episode_memory])
@@ -427,8 +472,90 @@ def train_and_play_game(episodes=1000, cards_data=None):
         if (episode + 1) % 10 == 0:
             print(f"Episode {episode + 1} finished. AI win rate: {ai_wins / (episode + 1):.2f}")
 
-    print(f"Training complete. AI won {ai_wins} out of {episodes} games ({ai_wins / episodes:.2%})")
-    return model
+    # Save the trained model
+    save_training_data(model, ai_wins, player_points)
+    return model, ai_wins, player_points, card_draft_counts, card_win_counts, all_cards
+
+
+def create_report(ai_wins, player_points, card_draft_counts, card_win_counts, all_cards, episodes, deck):
+    """Generates a report summarizing the AI's performance."""
+    report = f"Training completed over {episodes} episodes.\n"
+    report += f"AI won {ai_wins} out of {episodes} games ({ai_wins / episodes:.2%})\n\n"
+
+    report += "Player Points:\n"
+    report += f"  Average: {np.mean(player_points):.2f}\n"
+    report += f"  Median: {np.median(player_points):.2f}\n"
+    report += f"  Maximum: {np.max(player_points)}\n\n"
+
+    report += "Card Drafting Analysis:\n"
+    report += "----------------------\n"
+    card_data = []
+    for card_name in all_cards:
+        draft_count = card_draft_counts.get(card_name, 0)
+        win_count = card_win_counts.get(card_name, 0)
+        win_rate = (win_count / draft_count) if draft_count > 0 else 0
+        card_power = 0
+        for card in deck:
+            if card['name'] == card_name:
+                card_power = card['power']
+                break
+        card_data.append({
+            "name": card_name,
+            "power": card_power,
+            "draft_probability": draft_count / episodes,
+            "draft_count": draft_count,
+            "win_rate": win_rate
+        })
+
+    # Sort cards by win rate
+    sorted_card_data = sorted(card_data, key=lambda x: x["win_rate"], reverse=True)
+    for card in sorted_card_data:
+        report += f"  {card['name']} (Power: {card['power']}): Drafted {card['draft_count']} times, Draft probability: {card['draft_probability']:.2f}, Win Rate: {card['win_rate']:.2f}%\n"
+
+    return report
+
+
+def save_training_data(model, ai_wins, player_points):
+    """Saves the training data to a JSON file."""
+    model_data = {
+        'coefs_': [coef.tolist() for coef in model.coefs_],
+        'intercepts_': [intercept.tolist() for intercept in model.intercepts_],
+        'ai_wins': ai_wins,
+        'player_points': player_points,
+        'n_layers_': getattr(model, 'n_layers_', 0),  # Save n_layers_ if it exists
+        'hidden_layer_sizes': model.hidden_layer_sizes,  # save the hidden layer sizes
+        'out_activation_': getattr(model, 'out_activation_', 'relu'),
+        't_': getattr(model, 't_', 0),
+        'loss_curve_': getattr(model, 'loss_curve_', []),
+        'best_loss_': getattr(model, 'best_loss_', None),
+        '_no_improvement_count': getattr(model, '_no_improvement_count', 0),
+    }
+    try:
+        with open("training_data.json", "w") as f:
+            json.dump(model_data, f)
+        print("Training data saved to training_data.json")
+    except Exception as e:
+        print(f"Error saving training data: {e}")
+
+
+def load_training_data():
+    """Loads the training data from a JSON file."""
+    try:
+        with open("training_data.json", "r") as f:
+            model_data = json.load(f)
+            # Convert lists back to numpy arrays
+            model_data['coefs_'] = [np.array(coef) for coef in model_data['coefs_']]
+            model_data['intercepts_'] = [np.array(intercept) for intercept in model_data['intercepts_']]
+            return model_data
+    except FileNotFoundError:
+        print("Training data file not found. Starting from scratch.")
+        return None  # Return None to indicate no previous data
+    except json.JSONDecodeError:
+        print("Error decoding JSON. Starting from scratch.")
+        return None
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}. Starting from scratch.")
+        return None
 
 
 # Add this block for testing
@@ -450,4 +577,11 @@ if __name__ == "__main__":
         except ValueError:
             print(f"Invalid episodes value, using default: {episodes}")
     print(f"Training for {episodes} episodes")
-    trained_model = train_and_play_game(episodes=episodes, cards_data=cards_data)
+    trained_model, ai_wins, player_points, card_draft_counts, card_win_counts, all_cards = train_and_play_game(episodes=episodes, cards_data=cards_data)
+    print(f"Trained model: {trained_model}")
+    report = create_report(ai_wins, player_points, card_draft_counts, card_win_counts, all_cards, episodes, cards_data)
+    timestamp = time.strftime("%Y%m%d-%H%M%S")
+    filename = f"reports/report_{timestamp}_X{episodes}.txt"
+    with open(filename, "w") as f:
+        f.write(report)
+    print(f"Report saved to {filename}")

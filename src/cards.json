@@ -431,22 +431,36 @@
   },
   {
     "power": 26,
-    "types": [
-      "Monster",
-      "Tier"
+    "types": [],
+    "name": "Geppetto",
+    "abilities": [
+      {
+        "condition": "for_each_in_range",
+        "condition_type": "1,9",
+        "trigger": "both",
+        "hearts": 1,
+        "stars": 0,
+        "crystals": 0
+      }
     ],
-    "name": "Grosser Boeser Wolf26",
-    "abilities": [],
     "img_url": null
   },
   {
     "power": 27,
     "types": [
-      "Monster",
-      "Tier"
+      "Wunderland"
     ],
-    "name": "Grosser Boeser Wolf27",
-    "abilities": [],
+    "name": "Humpty Dumpty",
+    "abilities": [
+      {
+        "condition": "for_each_in_range",
+        "condition_type": "41,50",
+        "trigger": "both",
+        "hearts": 0,
+        "stars": 0,
+        "crystals": 1
+      }
+    ],
     "img_url": null
   },
   {

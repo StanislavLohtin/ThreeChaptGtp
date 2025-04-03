@@ -163,11 +163,28 @@
   {
     "power": 9,
     "types": [
-      "Monster",
+      "Wunderland",
       "Tier"
     ],
-    "name": "Grosser Boeser Wolf9",
-    "abilities": [],
+    "name": "Weisses Kaninchen",
+    "abilities": [
+      {
+        "condition": "if_last",
+        "condition_type": 0,
+        "trigger": "second",
+        "hearts": 1,
+        "stars": 0,
+        "crystals": 0
+      },
+      {
+        "condition": "if_weakest",
+        "condition_type": 0,
+        "trigger": "second",
+        "hearts": 1,
+        "stars": 0,
+        "crystals": 0
+      }
+    ],
     "img_url": null
   },
   {
@@ -594,21 +611,45 @@
   {
     "power": 35,
     "types": [
-      "Monster",
       "Tier"
     ],
-    "name": "Grosser Boeser Wolf35",
-    "abilities": [],
+    "name": "Die Drei Baeren",
+    "abilities": [
+      {
+        "condition": "if_you_win_without",
+        "condition_type": 5,
+        "trigger": "second",
+        "hearts": 0,
+        "stars": 0,
+        "crystals": 3
+      },
+      {
+        "condition": "if_you_win_with",
+        "condition_type": 5,
+        "trigger": "second",
+        "hearts": 3,
+        "stars": 0,
+        "crystals": 0
+      }
+    ],
     "img_url": null
   },
   {
     "power": 36,
     "types": [
-      "Monster",
-      "Tier"
+      "Monster"
     ],
-    "name": "Grosser Boeser Wolf36",
-    "abilities": [],
+    "name": "Troll",
+    "abilities": [
+      {
+        "condition": "if_you_win",
+        "condition_type": 0,
+        "trigger": "second",
+        "hearts": 0,
+        "stars": 1,
+        "crystals": 0
+      }
+    ],
     "img_url": null
   },
   {
@@ -660,11 +701,19 @@
   {
     "power": 40,
     "types": [
-      "Monster",
-      "Tier"
+      "Zauber",
+      "Krone"
     ],
-    "name": "Grosser Boeser Wolf40",
-    "abilities": [],
+    "name": "Schneekoenigin",
+    "abilities": [
+      {
+        "condition": "block_hearts_and_crystals",
+        "condition_type": 0,
+        "trigger": "second",
+        "hearts": 0,
+        "stars": 0,
+        "crystals": 0
+      }],
     "img_url": null
   },
   {
@@ -706,11 +755,18 @@
   {
     "power": 43,
     "types": [
-      "Monster",
-      "Tier"
+      "Bösewicht"
     ],
-    "name": "Grosser Boeser Wolf43",
-    "abilities": [],
+    "name": "Vampir",
+    "abilities": [
+      {
+        "condition": "if_you_win",
+        "condition_type": 0,
+        "trigger": "second",
+        "hearts": 1,
+        "stars": 0,
+        "crystals": 0
+      }],
     "img_url": null
   },
   {

@@ -52,7 +52,7 @@ def display_player_hands(hands, description):
         print("-" * 20)
 
 
-def check_abilities(player_card, other_cards, is_second_phase):
+def check_abilities(player_card, other_cards, is_second_phase, current_player_index=0):
     """Check abilities of a card and calculate winnings."""
     result = {"stars": 0, "hearts": 0, "crystals": 0}
 
@@ -61,8 +61,11 @@ def check_abilities(player_card, other_cards, is_second_phase):
         return result
 
     for ability in get_card_abilities(player_card, is_second_phase):
-        ability_winnings = check_ability(ability, player_card, other_cards, is_second_phase)
+        ability_winnings = check_ability(ability, player_card, other_cards, is_second_phase, current_player_index)
         if ability_winnings is not None:
+            if is_second_phase and get_cards_by_type(other_cards, "block_hearts_and_crystals"):
+                ability_winnings["hearts"] = 0
+                ability_winnings["crystals"] = 0
             result["hearts"] += ability_winnings["hearts"]
             result["crystals"] += ability_winnings["crystals"]
             result["stars"] += ability_winnings["stars"]
@@ -72,7 +75,7 @@ def check_abilities(player_card, other_cards, is_second_phase):
     return result
 
 
-def check_ability(ability, player_card, other_cards, is_second_phase):
+def check_ability(ability, player_card, other_cards, is_second_phase, current_player_index=0):
     """Check a specific ability and return winnings."""
     if ability["condition"] == "exists_one_other":
         # Return winnings if at least one card of the specified type exists
@@ -95,10 +98,31 @@ def check_ability(ability, player_card, other_cards, is_second_phase):
         return {"stars": ability["stars"] * card_found, "hearts": ability["hearts"] * card_found, "crystals": ability["crystals"] * card_found}
 
     if ability["condition"] == "for_each_in_range":
-        # Check if a specific card (by power) exists
         ranges_string = ability["condition_type"].split(',')
         cards_found = len(get_cards_in_power_range(other_cards, int(ranges_string[0]), int(ranges_string[1])))
         return {"stars": ability["stars"] * cards_found, "hearts": ability["hearts"] * cards_found, "crystals": ability["crystals"] * cards_found}
+
+    if ability["condition"] == "if_you_win":
+        won = 1 if max(card["power"] for card in other_cards) < player_card["power"] else 0
+        return {"stars": ability["stars"] * won, "hearts": ability["hearts"] * won, "crystals": ability["crystals"] * won}
+
+    if ability["condition"] == "if_you_win_with":
+        won = 1 if max(card["power"] for card in other_cards) < player_card["power"] else 0
+        won = won * (1 if get_card_by_power(other_cards, ability["condition_type"]) is not None else 0)
+        return {"stars": ability["stars"] * won, "hearts": ability["hearts"] * won, "crystals": ability["crystals"] * won}
+
+    if ability["condition"] == "if_you_win_without":
+        won = 1 if max(card["power"] for card in other_cards) < player_card["power"] else 0
+        won = won * (1 if get_card_by_power(other_cards, ability["condition_type"]) is None else 0)
+        return {"stars": ability["stars"] * won, "hearts": ability["hearts"] * won, "crystals": ability["crystals"] * won}
+
+    if ability["condition"] == "if_weakest":
+        has_lowest = 1 if min(card["power"] for card in other_cards) > player_card["power"] else 0
+        return {"stars": ability["stars"] * has_lowest, "hearts": ability["hearts"] * has_lowest, "crystals": ability["crystals"] * has_lowest}
+
+    if ability["condition"] == "if_last":
+        last = 1 if current_player_index == 3 else 0
+        return {"stars": ability["stars"] * last, "hearts": ability["hearts"] * last, "crystals": ability["crystals"] * last}
 
     return {"stars": 0, "hearts": 0, "crystals": 0}
 
@@ -434,7 +458,7 @@ def train_and_play_game(episodes=1000, cards_data=None):
                 # Apply card abilities
                 for current_player_index, card in played_cards:
                     other_cards = [c[1] for c in played_cards if c[0] != current_player_index]
-                    winnings = check_abilities(card, other_cards, True)
+                    winnings = check_abilities(card, other_cards, True, current_player_index)
                     if winnings:
                         player_scores[current_player_index]["hearts"] += winnings["hearts"]
                         player_scores[current_player_index]["crystals"] += winnings["crystals"]
@@ -570,7 +594,7 @@ if __name__ == "__main__":
         print("Creating cards from scratch...")
         cards_data = []
 
-    episodes = 1000
+    episodes = 10000
     if len(sys.argv) > 1:
         try:
             episodes = int(sys.argv[1])

@@ -246,21 +246,45 @@
   {
     "power": 13,
     "types": [
-      "Monster",
-      "Tier"
+      "Zwerg"
     ],
-    "name": "Grosser Boeser Wolf13",
-    "abilities": [],
+    "name": "Gieriger Zwerg",
+    "abilities": [
+      {
+        "condition": "income",
+        "condition_type": 0,
+        "trigger": "both",
+        "hearts": 0,
+        "stars": 0,
+        "crystals": 1
+      },
+      {
+        "condition": "if_most_crystals",
+        "condition_type": 0,
+        "trigger": "third",
+        "hearts": 0,
+        "stars": 1,
+        "crystals": 0
+      }
+    ],
     "img_url": null
   },
   {
     "power": 14,
     "types": [
-      "Monster",
-      "Tier"
+      "Zwerg"
     ],
-    "name": "Grosser Boeser Wolf14",
-    "abilities": [],
+    "name": "Friedlicher Zwerg",
+    "abilities": [
+      {
+        "condition": "never_won",
+        "condition_type": 0,
+        "trigger": "third",
+        "hearts": 0,
+        "stars": 2,
+        "crystals": 0
+      }
+    ],
     "img_url": null
   },
   {
@@ -284,21 +308,37 @@
   {
     "power": 16,
     "types": [
-      "Monster",
-      "Tier"
+      "Zwerg"
     ],
-    "name": "Grosser Boeser Wolf16",
-    "abilities": [],
+    "name": "Zwerge der Freundschaft",
+    "abilities": [
+      {
+        "condition": "if_you_have_4_hearts",
+        "condition_type": 0,
+        "trigger": "third",
+        "hearts": 4,
+        "stars": 0,
+        "crystals": 0
+      }
+    ],
     "img_url": null
   },
   {
     "power": 17,
     "types": [
-      "Monster",
-      "Tier"
+      "Zwerg"
     ],
-    "name": "Grosser Boeser Wolf17",
-    "abilities": [],
+    "name": "Tapferer Zwerg",
+    "abilities": [
+      {
+        "condition": "stars_give_point_more",
+        "condition_type": 0,
+        "trigger": "third",
+        "hearts": 0,
+        "stars": 0,
+        "crystals": 0
+      }
+    ],
     "img_url": null
   },
   {
@@ -439,11 +479,20 @@
   {
     "power": 25,
     "types": [
-      "Monster",
+      "Wunderland",
       "Tier"
     ],
-    "name": "Grosser Boeser Wolf25",
-    "abilities": [],
+    "name": "Grinsekatze",
+    "abilities": [
+      {
+        "condition": "get_for_each",
+        "condition_type": "crystals",
+        "trigger": "second",
+        "hearts": 0,
+        "stars": 0,
+        "crystals": 1
+      }
+    ],
     "img_url": null
   },
   {
@@ -655,11 +704,20 @@
   {
     "power": 37,
     "types": [
-      "Monster",
-      "Tier"
+      "Boesewicht",
+      "Wunderland"
     ],
-    "name": "Grosser Boeser Wolf37",
-    "abilities": [],
+    "name": "Herkoenigin",
+    "abilities": [
+      {
+        "condition": "get_for_each",
+        "condition_type": "hearts",
+        "trigger": "second",
+        "hearts": 1,
+        "stars": 0,
+        "crystals": 0
+      }
+    ],
     "img_url": null
   },
   {
@@ -713,7 +771,8 @@
         "hearts": 0,
         "stars": 0,
         "crystals": 0
-      }],
+      }
+    ],
     "img_url": null
   },
   {
@@ -766,7 +825,8 @@
         "hearts": 1,
         "stars": 0,
         "crystals": 0
-      }],
+      }
+    ],
     "img_url": null
   },
   {

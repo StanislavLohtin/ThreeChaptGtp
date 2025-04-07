@@ -124,6 +124,22 @@ def check_ability(ability, player_card, other_cards, is_second_phase, current_pl
         last = 1 if current_player_index == 3 else 0
         return {"stars": ability["stars"] * last, "hearts": ability["hearts"] * last, "crystals": ability["crystals"] * last}
 
+    if ability["condition"] == "get_for_each":
+        resource_to_count = ability["condition_type"]
+        count = 0
+        for card in other_cards:
+            if has_ability(card, "get_for_each"):
+                continue
+            all_cards_without_current = [player_card] + other_cards
+            all_cards_without_current.remove(card)
+            count += check_abilities(card, all_cards_without_current, is_second_phase, current_player_index)[resource_to_count]
+        result = {"stars": 0, "hearts": 0, "crystals": 0}
+        result[resource_to_count] = count
+        return result
+
+    if ability["condition"] == "income":
+        return {"stars": ability["stars"] * 1, "hearts": ability["hearts"] * 1, "crystals": ability["crystals"] * 1}
+
     return {"stars": 0, "hearts": 0, "crystals": 0}
 
 
@@ -136,6 +152,10 @@ def calculate_final_scores(player_scores, player_hands):
             score["stars"] += winnings["stars"]
             score["hearts"] += winnings["hearts"]
             score["crystals"] += winnings["crystals"]
+        if has_card_with_ability(player_hands[player_index], "if_you_have_4_hearts") and score["hearts"] >= 4:
+            score["hearts"] += 4
+        if has_card_with_ability(player_hands[player_index], "never_won") and score["wins"] == 0:
+            score["stars"] += 2
         print()
 
     highest_crystals = max(score["crystals"] for score in player_scores)
@@ -145,10 +165,14 @@ def calculate_final_scores(player_scores, player_hands):
         print(f"Players {crystal_winners} gain 4 extra Crystals for having the most crystals.")
         for winner_index in crystal_winners:
             player_scores[winner_index - 1]["crystals"] += 4  # Adjust index back
+            if has_card_with_ability(player_hands[winner_index - 1], "if_most_crystals"):
+                player_scores[winner_index - 1]["stars"] += 1
 
     final_scores = []
     for player_index, score in enumerate(player_scores):
         total_points = (score["stars"] * 2) + score["hearts"] + (score["crystals"] // 2)
+        if has_card_with_ability(player_hands[player_index], "stars_give_point_more"):
+            total_points += score["stars"]
         final_scores.append((player_index, total_points))
 
     highest_score = max(score for _, score in final_scores)
@@ -193,6 +217,17 @@ def get_card_abilities(card, is_second_phase):
             if ability["trigger"] == "both" or (is_second_phase and ability["trigger"] == "second") or (not is_second_phase and ability["trigger"] == "third"):
                 result.append(ability)
     return result
+
+
+def has_card_with_ability(player_hand, ability_name):
+    for card in player_hand:
+        if has_ability(card, ability_name):
+            return True
+    return False
+
+
+def has_ability(card, ability_name):
+    return len([ab for ab in card["abilities"] if ability_name == ab["condition"]]) > 0
 
 
 def get_cards_by_type(cards, type_name):
@@ -366,7 +401,7 @@ def train_and_play_game(episodes=1000, cards_data=None):
         # Deal cards
         players_hands, _ = deal_cards(deck)
         # display_player_hands(players_hands, 'dealt')
-        player_scores = [{"stars": 0, "hearts": 0, "crystals": 0} for _ in range(4)]
+        player_scores = [{"stars": 0, "hearts": 0, "crystals": 0, "wins": 0} for _ in range(4)]
         drafted_hands = [[] for _ in range(4)]
 
         episode_memory = []
@@ -454,6 +489,7 @@ def train_and_play_game(episodes=1000, cards_data=None):
             if played_cards:
                 winner_index = max(played_cards, key=lambda x: x[1]["power"])[0]
                 player_scores[winner_index]["stars"] += 1
+                player_scores[winner_index]["wins"] += 1
 
                 # Apply card abilities
                 for current_player_index, card in played_cards:

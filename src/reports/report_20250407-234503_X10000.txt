@@ -1,0 +1,60 @@
+Training completed over 10000 episodes.
+AI won 7052 out of 10000 games (70.52%)
+
+Player Points:
+  Average: 13.60
+  Median: 14.00
+  Maximum: 26
+
+Card Drafting Analysis:
+----------------------
+  Zauberer (Power: 39): Drafted 2644 times, Draft probability: 0.26, Win Rate: 1.66%
+  Prinz (Power: 42): Drafted 2683 times, Draft probability: 0.27, Win Rate: 1.61%
+  Boese Fee (Power: 34): Drafted 1782 times, Draft probability: 0.18, Win Rate: 1.60%
+  Drache (Power: 50): Drafted 4419 times, Draft probability: 0.44, Win Rate: 1.54%
+  Hexe (Power: 44): Drafted 3490 times, Draft probability: 0.35, Win Rate: 1.53%
+  Einhorn (Power: 41): Drafted 2442 times, Draft probability: 0.24, Win Rate: 1.52%
+  Grosser Boeser Wolf (Power: 48): Drafted 3931 times, Draft probability: 0.39, Win Rate: 1.52%
+  Humpty Dumpty (Power: 27): Drafted 982 times, Draft probability: 0.10, Win Rate: 1.51%
+  Riese (Power: 47): Drafted 3824 times, Draft probability: 0.38, Win Rate: 1.51%
+  Boese Stiefmutter (Power: 49): Drafted 4055 times, Draft probability: 0.41, Win Rate: 1.50%
+  Gestiefelter Kater (Power: 31): Drafted 1264 times, Draft probability: 0.13, Win Rate: 1.50%
+  Hutmacher (Power: 28): Drafted 1063 times, Draft probability: 0.11, Win Rate: 1.50%
+  Vampir (Power: 43): Drafted 3004 times, Draft probability: 0.30, Win Rate: 1.50%
+  Das Biest (Power: 45): Drafted 3381 times, Draft probability: 0.34, Win Rate: 1.50%
+  Seeschlange (Power: 46): Drafted 3547 times, Draft probability: 0.35, Win Rate: 1.50%
+  Troll (Power: 36): Drafted 1882 times, Draft probability: 0.19, Win Rate: 1.44%
+  Oger (Power: 32): Drafted 1348 times, Draft probability: 0.13, Win Rate: 1.44%
+  Rumpelstilzchen (Power: 33): Drafted 1609 times, Draft probability: 0.16, Win Rate: 1.44%
+  Captain Hook (Power: 38): Drafted 2094 times, Draft probability: 0.21, Win Rate: 1.39%
+  Herkoenigin (Power: 37): Drafted 1875 times, Draft probability: 0.19, Win Rate: 1.39%
+  Schneekoenigin (Power: 40): Drafted 2815 times, Draft probability: 0.28, Win Rate: 1.39%
+  Die Drei Baeren (Power: 35): Drafted 1679 times, Draft probability: 0.17, Win Rate: 1.37%
+  Gute Fee (Power: 22): Drafted 787 times, Draft probability: 0.08, Win Rate: 1.35%
+  Gloeckchen (Power: 23): Drafted 898 times, Draft probability: 0.09, Win Rate: 1.35%
+  Prinzessin (Power: 29): Drafted 1158 times, Draft probability: 0.12, Win Rate: 1.34%
+  Aschenputtel (Power: 24): Drafted 738 times, Draft probability: 0.07, Win Rate: 1.34%
+  Peter Pan (Power: 30): Drafted 1058 times, Draft probability: 0.11, Win Rate: 1.32%
+  Tapferer Zwerg (Power: 17): Drafted 508 times, Draft probability: 0.05, Win Rate: 1.27%
+  Baba Jaga (Power: 21): Drafted 576 times, Draft probability: 0.06, Win Rate: 1.24%
+  Geppetto (Power: 26): Drafted 960 times, Draft probability: 0.10, Win Rate: 1.23%
+  Zwergen Oberhaupt (Power: 18): Drafted 561 times, Draft probability: 0.06, Win Rate: 1.22%
+  Grinsekatze (Power: 25): Drafted 767 times, Draft probability: 0.08, Win Rate: 1.19%
+  Schneewittchen (Power: 19): Drafted 523 times, Draft probability: 0.05, Win Rate: 1.08%
+  Die Schoene (Power: 20): Drafted 567 times, Draft probability: 0.06, Win Rate: 1.05%
+  Gieriger Zwerg (Power: 13): Drafted 379 times, Draft probability: 0.04, Win Rate: 1.02%
+  Zwerge der Freundschaft (Power: 16): Drafted 445 times, Draft probability: 0.04, Win Rate: 0.96%
+  Verliebter Zwerg (Power: 15): Drafted 416 times, Draft probability: 0.04, Win Rate: 0.85%
+  Friedlicher Zwerg (Power: 14): Drafted 376 times, Draft probability: 0.04, Win Rate: 0.81%
+  Rotkaeppchen (Power: 12): Drafted 307 times, Draft probability: 0.03, Win Rate: 0.77%
+  Tweedledee (Power: 11): Drafted 355 times, Draft probability: 0.04, Win Rate: 0.66%
+  Froschkoenig (Power: 2): Drafted 299 times, Draft probability: 0.03, Win Rate: 0.64%
+  Weisses Kaninchen (Power: 9): Drafted 310 times, Draft probability: 0.03, Win Rate: 0.59%
+  Tweedledum (Power: 10): Drafted 332 times, Draft probability: 0.03, Win Rate: 0.59%
+  Pinocchio (Power: 3): Drafted 297 times, Draft probability: 0.03, Win Rate: 0.59%
+  Alice (Power: 8): Drafted 261 times, Draft probability: 0.03, Win Rate: 0.58%
+  Gretel (Power: 7): Drafted 305 times, Draft probability: 0.03, Win Rate: 0.55%
+  Jack (Power: 4): Drafted 253 times, Draft probability: 0.03, Win Rate: 0.43%
+  Haensel (Power: 6): Drafted 251 times, Draft probability: 0.03, Win Rate: 0.41%
+  Gestaltwandler (Power: 1): Drafted 246 times, Draft probability: 0.02, Win Rate: 0.37%
+  Goldgloeckchen (Power: 5): Drafted 254 times, Draft probability: 0.03, Win Rate: 0.35%
